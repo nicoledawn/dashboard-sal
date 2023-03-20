@@ -1,0 +1,19 @@
+<%= form_with model: @resource do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+<div>
+    <%= form.label :category %><br>
+    <%= form.select :category_id, options_for_select(@categories.collect { |cat| [cat.name, cat.id]}) %>
+  </div>
+  <div>
+    <%= form.label :document %><br>
+    <%= form.file_field :document %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

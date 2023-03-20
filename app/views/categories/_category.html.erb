@@ -1,0 +1,15 @@
+<div id="<%= dom_id category %>">
+  <h1>
+    <%= category.name %>
+  </h1>
+
+<div class=" resource-columns  gap-1">
+  <% category.resources.each do |resource| %>
+  <%= link_to resource.document, :target => "_blank" do %>
+  <p> <%= resource.title%>  </p>
+
+  <% end %>
+  <% end %>
+  </div>
+
+</div>

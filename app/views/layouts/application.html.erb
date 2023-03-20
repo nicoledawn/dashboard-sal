@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SalPortalApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+ 
+
+  <body class="d-flex flex-column min-vh-100">
+  
+    <%= render 'layouts/navigation' %>
+    <div class="page-content h-100 d-flex flex-column justify-content-center">
+    <%= render 'layouts/messages' %>
+    
+   
+    <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

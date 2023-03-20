@@ -1,0 +1,110 @@
+<div class="my-5">
+<h1>User View</h1> 
+<h2 class="my-2"><%= @user.firstname %> <%= @user.lastname%>'s Profile</h2>
+
+<%= form_for(@user) do |f| %>
+<div class="d-flex w-100 column-wrapper">
+
+<div class="col-1-edit w-100">
+<div class="field my-3 ">
+    <%= f.label "First Name" %><br />
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "first name" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label "Last Name" %><br />
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "last name" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label "Phone #" %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+   <% if current_user.payroll? %>
+<div class="field">
+    <%= f.label :position %><br />
+    <%= f.text_field :position, autofocus: true, autocomplete: "position" %>
+  </div>
+   <% else %>
+   <div class="field">
+    <%= f.label :position %><br />
+    <%= f.text_field :position, autofocus: true, autocomplete: "position", disabled: true %>
+  </div>
+  <% end %>
+
+  <% if current_user.payroll? %>
+    <div class="field my-3 dropdown-cap">
+      <%= f.label "Permissions Level" %><br />
+      <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}, @user.role) %>
+    </div>
+  <% else %>
+    <div class="field my-3 dropdown-cap">
+      <%= f.label "Permissions Level" %><br />
+      <p class="permissions-disabled" ><%= @user.role %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-2-edit w-100">
+
+  
+ <div class="field my-3">
+    <%= f.label :password %> <i>(Leave blank if not changing)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+
+<div class="my-3 w-100">
+<%= link_to "View Current CV", @user.resume, class: "orange-btn cv-btn w-100" %>
+</div>  
+
+<span class="btn  btn-file">
+   Replace CV
+    <%= f.file_field :resume %>
+</span>
+
+  
+
+</div>
+  
+
+ 
+
+  
+ 
+    </div>
+     <div class="actions my-3">
+    <%= f.submit "Update User", class: "w-100 text-uppercase orange-btn" %>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="my-5 back-btn">
+  <%= link_to "Return To Your Dashboard", root_path, class: "orange-btn px-5" %>
+  </div>
+
+  
+
+<% end %>
+
+</div>

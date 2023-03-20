@@ -1,0 +1,89 @@
+<div class="my-5">
+
+<%= form_with model: @user do |f| %>
+<div class="d-flex w-100 column-wrapper">
+
+<div class="col-1-edit w-100">
+<div class="field my-3 ">
+    <%= f.label "First Name" %><br />
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "first name" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label "Last Name" %><br />
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "last name" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label "Phone #" %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+   
+<div class="field">
+    <%= f.label :position %><br />
+    <%= f.text_field :position, autofocus: true, autocomplete: "position" %>
+  </div>
+  
+
+  
+    <div class="field my-3 dropdown-cap">
+      <%= f.label "Permissions Level" %><br />
+      <%= f.select :role, options_for_select(User.roles.map {|key, value| [key.titleize, User.roles.key(value)]}) %>
+    </div>
+  
+    
+</div>
+
+<div class="col-2-edit w-100">
+
+  
+ <div class="field my-3">
+    <%= f.label :password %> <br />
+    <%= f.password_field :password %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field my-3">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+
+
+
+
+<span class="btn  btn-file">
+   Upload CV
+    <%= f.file_field :resume %>
+</span>
+
+  
+
+</div>
+  
+
+ 
+
+  
+ 
+    </div>
+     <div class="actions my-3">
+    <%= f.submit "Add New User", class: "w-100 text-uppercase orange-btn" %>
+  </div>
+
+  
+
+  
+
+<% end %>
+
+</div>

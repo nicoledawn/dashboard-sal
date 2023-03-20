@@ -1,0 +1,27 @@
+<h1><%= @resource.title %></h1>
+
+
+
+<% if @resource.document.attached? %>
+    <div class="row">
+        <% if @resource.document.image? %>
+            <%= image_tag @resource.document.variant(:thumb) %>
+
+        <% elsif @resource.document.video? %>
+
+            <%= video_tag(url_for(@resource.document), controls: "" ) %>
+
+        <% elsif @resource.document.audio? %>
+            
+            <%= audio_tag(url_for(@resource.document), controls: "" ) %>
+        
+        <% else %>
+
+            <%= link_to @resource.document.filename, url_for(@resource.document) %>
+
+            <embed type="application/pdf" src=<%= url_for( @resource.document )%> style="width: 500px; height: 700px">
+
+        <% end %>
+    </div>
+<% end %>
+

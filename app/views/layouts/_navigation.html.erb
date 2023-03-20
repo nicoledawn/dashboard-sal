@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          
+          <%= link_to image_tag("logo.png"), root_path, class: "navbar-brand", id: "logo" %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+          <% if current_user %>
+          <li class="nav-item mx-2 user-role text-uppercase"><%= current_user.role %></li>
+          <li class="nav-item mx-2 logout-btn"> <%= button_to "Logout", destroy_user_session_path, method: :delete %> </li>
+          
+
+          <% else %>
+          
+                <li class="nav-item mx-2">
+                   <%# link_to "See Resources", resources_path %>
+                   <%# link_to "Add Resources", new_resource_path %>
+                   <%= link_to "User Sign Up", new_user_registration_path %>
+                  <%# link_to "Users", users_path %>
+                   <%# link_to "Login", new_user_session_path %>
+                   
+                    
+                  </li>
+                  
+
+          <% end %>
+
+          </ul>
+
+
+             
+          </div>
+        </div>
+      </nav> 

@@ -1,0 +1,26 @@
+<h1 class="mt-5 mb-1 w-100">User's Dashboard</h1>
+<h2 class="mt-2">Add New User</h2>
+
+<%= render "users/form" %>
+
+<h2 class="text-left" >View/Edit/Delete Users</h2>
+<div class="space my-5">
+<% @users.each do |user| %>
+  <div class="my-4 d-flex justify-content-between w-100 align-items-center" >
+  <h6><%= user.firstname %> <%= user.lastname %></h6>
+<div>
+  <%= link_to "Edit User", edit_user_path(user), class: "orange-btn" %>
+  <%= link_to "Destroy", user_path(user), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "cancel-btn " %>
+                  </div>
+                  </div>
+<% end %>
+</div>
+
+<div class="spacer"></div>
+
+  <div class="my-5 back-btn">
+  <%= link_to "Return To Your Dashboard", root_path, class: "orange-btn px-5" %>
+  </div>

@@ -1,0 +1,56 @@
+<% if current_user %>
+
+    <h1 class="mt-5 mb-2 w-100 text-left"> <%= current_user.firstname %> <%= current_user.lastname %>'s Dashboard </h1>
+
+    <% if current_user.payroll? %>
+
+        <p class="text-left w-100 mb-5">You have Payroll level access and are able to add/edit/delete Employee 
+        Resources, Company Policies, assign user roles and add/edit/delete paystubs.</p>
+
+    <% elsif current_user.admin? %>
+
+        <p class="text-left w-100 mb-5">You have Admin level access and are able to add/edit/delete Employee 
+        Resources, Company Policies and assign user roles.</p>
+
+    <% else %>
+    
+        <p class="text-left w-100 mb-5">Welcome to the employee portal. You can view employee resources, company policies, view your paystubs, edit your profile and upload your latest resume.</p>
+
+    <% end %>
+
+    <div class="columns d-flex w-100 justify-content-between  ">
+        
+        <div class="dashboard-btns d-flex justify-content-start  flex-column mr-4 w-50">
+            
+            <%= link_to "Employee Resources", category_path(1), class: "orange-btn text-center"%>
+            <%= link_to "Company Policies", category_path(2), class: "orange-btn text-center mt-3"%>
+           
+            <%= link_to "Your Paystubs", resources_path, class: "orange-btn text-center mt-3" %>
+            <%= link_to "Edit Your Profile", edit_user_registration_path(current_user), class: "orange-btn text-center mt-3" %>
+            <% if current_user.payroll? || current_user.admin? %>
+                <h2 class="mt-4 text-left" >Admin</h2>
+                <%= link_to "View All Users", users_path, class: "orange-btn text-center mt-3" %>
+            <% end %>
+            <% if current_user.payroll? %>
+                <h2 class="mt-4 text-left" >Payroll Admin</h2>
+                <%= link_to "Upload Paystubs", resources_path, class: "orange-btn text-center mt-3" %>
+                <%= link_to "Edit/Delete Paystubs", resources_path, class: "orange-btn text-center mt-3" %>
+            <% end %>
+            
+        </div>
+
+        <% if current_user.resume.attached? %>
+            <div class="resume mx-4 w-50">
+            
+                <iframe type="application/pdf"  src="<%= url_for(current_user.resume) %>#view=Fit" width="500px" height="650" style=" border: 4px solid #343a40"></iframe>
+          
+             </div>
+        <% end %>
+
+
+    </div>
+    <div class="mb-5">
+    
+    </div>
+
+<% end %>

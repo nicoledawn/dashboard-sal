@@ -1,0 +1,30 @@
+<h1 class=" text-left" ><%= current_user.firstname %> <%= current_user.lastname %>'s Paystubs</h1>
+
+
+
+
+<div class=" d-flex flex-wrap  gap-1">
+  <% @payrolls.each do |payroll| %>
+    <div class="w-50 d-flex flex-row justify-content-between align-items-center py-2 gap-2 ">
+      <%= link_to payroll_path(payroll) do %>
+        <%= payroll.payroll_date.strftime("%B %d, %Y")  %>
+        <% end %>
+        <% if current_user.payroll? %>
+        
+        <%= link_to "View/Download", payroll.file, class: "orange-btn" %>
+       
+
+               
+                  <% end %>
+        
+      
+    </div>
+  <% end %>
+</div>
+
+
+ <div class="spacer relative"></div>
+
+  <div class="my-5 back-btn">
+  <%= link_to "Return To Your Dashboard", root_path, class: "orange-btn px-5" %>
+  </div>

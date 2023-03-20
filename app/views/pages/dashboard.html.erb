@@ -18,6 +18,8 @@
 
     <% end %>
 
+
+
     <div class="columns d-flex w-100 justify-content-between  ">
         
         <div class="dashboard-btns d-flex justify-content-start  flex-column mr-4 w-50">
@@ -25,7 +27,7 @@
             <%= link_to "Employee Resources", category_path(1), class: "orange-btn text-center"%>
             <%= link_to "Company Policies", category_path(2), class: "orange-btn text-center mt-3"%>
            
-            <%= link_to "Your Paystubs", resources_path, class: "orange-btn text-center mt-3" %>
+            <%= link_to "Your Paystubs", user_path(current_user), class: "orange-btn text-center mt-3" %>
             <%= link_to "Edit Your Profile", edit_user_registration_path(current_user), class: "orange-btn text-center mt-3" %>
             <% if current_user.payroll? || current_user.admin? %>
                 <h2 class="mt-4 text-left" >Admin</h2>
@@ -33,8 +35,8 @@
             <% end %>
             <% if current_user.payroll? %>
                 <h2 class="mt-4 text-left" >Payroll Admin</h2>
-                <%= link_to "Upload Paystubs", resources_path, class: "orange-btn text-center mt-3" %>
-                <%= link_to "Edit/Delete Paystubs", resources_path, class: "orange-btn text-center mt-3" %>
+                <%= link_to "Upload Paystubs", new_payroll_path, class: "orange-btn text-center mt-3" %>
+                <%= link_to "Edit/Delete Paystubs", payrolls_path, class: "orange-btn text-center mt-3" %>
             <% end %>
             
         </div>

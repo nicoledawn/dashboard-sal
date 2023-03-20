@@ -1,0 +1,26 @@
+<h1><%= @payroll.user.firstname %> <%= @payroll.user.lastname %>'s Paystub</h1>
+
+
+
+<% if @payroll.file.attached? %>
+    <div class="row">
+        <% if @payroll.file.image? %>
+            <%= image_tag @payroll.file.variant(:thumb) %>
+
+        <% elsif @payroll.file.video? %>
+
+            <%= video_tag(url_for(@payroll.file), controls: "" ) %>
+
+        <% elsif @payroll.file.audio? %>
+            
+            <%= audio_tag(url_for(@payroll.file), controls: "" ) %>
+        
+        <% else %>
+
+            <%= link_to @payroll.file.filename, url_for(@payroll.file) %>
+
+            <embed type="application/pdf" src=<%= url_for( @payroll.file )%> style="width: 500px; height: 700px">
+
+        <% end %>
+    </div>
+<% end %>

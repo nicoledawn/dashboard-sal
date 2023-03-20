@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @categories = Category.all
-    
+    @paystubs = current_user.payrolls
   end
 end

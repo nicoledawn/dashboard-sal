@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :categories
   root 'pages#home'
+  get "payrolls/index"
+  resources :payrolls
   
 end

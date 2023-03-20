@@ -1,0 +1,19 @@
+<%= form_with model: @payroll do |form| %>
+  <div>
+    <%= form.label :payroll_date %><br>
+    <%= form.date_select :payroll_date %>
+  </div>
+
+<div>
+    <%= form.label :user %><br>
+    <%= form.select :user_id, options_for_select(@users.collect { |user| [user.firstname + " " + user.lastname, user.id]}) %>
+  </div>
+  <div>
+    <%= form.label :file %><br>
+    <%= form.file_field :file %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -12,6 +12,8 @@ class User < ApplicationRecord
   end
 
 
-         has_one_attached :resume
+  has_one_attached :resume, dependent: :destroy
+  has_many :payrolls
+  
   
 end

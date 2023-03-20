@@ -1,0 +1,38 @@
+<h1 class=" text-left" >Paystubs</h1>
+
+<% if current_user.payroll?  %>
+  <%= link_to "Add New Paystub", new_payroll_path, class:"orange-btn w-50 my-5 text-center" %>
+<% end %>
+
+
+<div class=" d-flex flex-wrap justify-content-start gap-1">
+  <% @payrolls.order(payroll_date: :desc).each do |payroll| %>
+    <div class="w-50 d-flex flex-row justify-content-start py-2 ">
+      <%= link_to payroll_path(payroll) do %>
+        <%= payroll.payroll_date  %> 
+        <%= payroll.user.firstname %>
+        <%= payroll.user.lastname %>
+        <% end %>
+        <% if current_user.payroll? %>
+        </div>
+        <div>
+        <%= link_to "View/Download", payroll.file, class: "orange-btn" %>
+        <%= link_to "Destroy", payroll_path(payroll), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-danger" %>
+
+               
+                  <% end %>
+        
+      </div>
+    
+  <% end %>
+</div>
+
+
+ <div class="spacer relative"></div>
+
+  <div class="my-5 back-btn">
+  <%= link_to "Return To Your Dashboard", root_path, class: "orange-btn px-5" %>
+  </div>

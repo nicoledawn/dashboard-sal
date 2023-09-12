@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   root 'pages#home'
   get "payrolls/index"
   resources :payrolls
-  
+
 end

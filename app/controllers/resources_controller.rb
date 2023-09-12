@@ -21,7 +21,7 @@ class ResourcesController < ApplicationController
 
     if @resource.save
       flash[:notice] = "The resource was successfully created."
-      redirect_to @resource
+      redirect_to category_path(@resource.category)
     else
       flash[:alert] = "Resource was NOT created."
       render :new, status: :unprocessable_entity

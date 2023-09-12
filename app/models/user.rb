@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 
   has_one_attached :resume, dependent: :destroy
-  has_many :payrolls
+  has_many :payrolls, dependent: :destroy
   
   
 end

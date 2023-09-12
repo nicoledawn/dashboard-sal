@@ -32,6 +32,7 @@
             <% if current_user.payroll? || current_user.admin? %>
                 <h2 class="mt-4 text-left" >Admin</h2>
                 <%= link_to "View All Users", users_path, class: "orange-btn text-center mt-3" %>
+                <%= link_to "Add New Users", new_user_path, class: "orange-btn text-center mt-3" %>
             <% end %>
             <% if current_user.payroll? %>
                 <h2 class="mt-4 text-left" >Payroll Admin</h2>

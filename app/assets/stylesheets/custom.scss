@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../assets/glyphicons-halflings-regular.eot');
+    src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+    url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  }
+
 p, a {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -30,6 +39,10 @@ a {
 
 }
 
+.nav-item .color-text-dark {
+    color: #282828 !important;
+}
+
 .heading-styles {
     color: #fff;
     text-transform: uppercase;
@@ -41,9 +54,15 @@ a {
     }
 }
 
+a.doc-link-org {
+    color: #f89938;
+}
+
 .resource-columns {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 0.5rem;
 }
 textarea {
     min-height: 200px !important;
@@ -291,4 +310,21 @@ footer {
         padding: 0.4rem 0.9rem;
         border-radius: 5px;
         
+      }
+
+
+      a.doc-link {
+        color: #282828;
+
+        &:hover {
+            color:#F89938;
+        }
+
+        i {
+            color: #F89938;
+        }
+      }
+
+      .dropdown-pay select {
+        width:fit-content;
       }

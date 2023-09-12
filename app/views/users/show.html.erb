@@ -1,26 +1,48 @@
-<h1 class=" text-left" ><%= current_user.firstname %> <%= current_user.lastname %>'s Paystubs</h1>
+<h1 class="mt-5 text-left" ><%= current_user.firstname %> <%= current_user.lastname %>'s Paystubs</h1>
 
 
-
-
-<div class=" d-flex flex-wrap  gap-1">
-  <% @payrolls.each do |payroll| %>
-    <div class="w-50 d-flex flex-row justify-content-between align-items-center py-2 gap-2 ">
-      <%= link_to payroll_path(payroll) do %>
-        <%= payroll.payroll_date.strftime("%B %d, %Y")  %>
-        <% end %>
-        <% if current_user.payroll? %>
-        
-        <%= link_to "View/Download", payroll.file, class: "orange-btn" %>
-       
-
-               
+ <div class="spacer relative"></div>
+ 
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link color-text-dark active" id="2023-tab" data-bs-toggle="tab" data-bs-target="#year1" type="button" role="tab" aria-controls="2023" aria-selected="true">2023</button>
+  </li>
+  <%# <li class="nav-item" role="presentation">
+    <button class="nav-link color-text-dark" id="2022-tab" data-bs-toggle="tab" data-bs-target="#year2" type="button" role="tab" aria-controls="2022" aria-selected="false">2022</button>
+  </li> %>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="year1" role="tabpanel" aria-labelledby="2023-tab">
+        <div class=" d-flex flex-wrap  gap-1">
+          <% if @payrolls.any? %>
+            <% @payrolls.each do |payroll| %>
+              <div class=" w-100 d-flex flex-row justify-content-between align-items-center py-2 gap-2 ">
+              <p class="m-0 "><%= payroll.payroll_date.strftime("%B %d, %Y") %></p>
+                <%= link_to payroll_path(payroll), class: "doc-link-org " do %>
+                  <%= payroll.payroll_date.strftime("%Y%m%d")  %>-<%= payroll.user.firstname.downcase %><%= payroll.user.lastname.downcase %>.pdf
                   <% end %>
-        
-      
+                  <% if current_user.payroll? %>
+                  
+                  <%= link_to "View/Download", payroll.file, class: "orange-btn " %>
+                
+
+                        
+                            <% end %>
+                  
+                
+              </div>
+            <% end %>
+
+          <% else %>
+          <p>You do not have any existing paystubs. If you think this is an error please contact the administrator.</p>
+          <% end %>
     </div>
-  <% end %>
+
+  </div>
+  
+  
 </div>
+
 
 
  <div class="spacer relative"></div>

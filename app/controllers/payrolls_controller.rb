@@ -3,10 +3,13 @@ class PayrollsController < ApplicationController
     before_action :set_users
   
     def index
-      @payrolls = Payroll.all
-  
+      # @payrolls = Payroll.all
+      @payrolls = Payroll.where(user_id: params[:user_id])
+     
       
     end
+
+    
   
     def show
       @payroll = Payroll.find(params[:id])
@@ -21,7 +24,7 @@ class PayrollsController < ApplicationController
   
       if @payroll.save
         flash[:notice] = "The Paystub was successfully created."
-        redirect_to @payroll
+        redirect_to new_payroll_path
       else
         flash[:alert] = "Paystub was NOT created."
         render :new, status: :unprocessable_entity

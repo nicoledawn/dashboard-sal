@@ -3,6 +3,6 @@ class AddNameToUsers < ActiveRecord::Migration[7.0]
     add_column :users, :firstname, :string
     add_column :users, :lastname, :string
     add_column :users, :position, :string
-    add_column :users, :avatar, :has_attached_file
+    add_column :users, :avatar, :attachment
   end
 end
